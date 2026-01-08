@@ -1,0 +1,36 @@
+query ListMyDeferredItems @auth(level: USER) {
+  deferredItems(where: {userId: {eq_expr: "auth.uid"}}) {
+    id
+    description
+    isCompleted
+    notes
+    reminderDateTime
+  }
+}
+
+query GetContext @auth(level: USER) {
+  contexts(where: {userId: {eq_expr: "auth.uid"}}) {
+    id
+    name
+    description
+  }
+}
+
+mutation CreateDeferredItem($description: String!, $notes: String, $reminderDateTime: Timestamp) @auth(level: USER) {
+  deferredItem_insert(data: {
+    userId_expr: "auth.uid",
+    description: $description,
+    isCompleted: false,
+    notes: $notes,
+    reminderDateTime: $reminderDateTime
+  })
+}
+
+query GetMyProfile @auth(level: USER, insecureReason: "This operation is safe to expose to all logged in users.") {
+  users(where: {id: {eq_expr: "auth.uid"}}) {
+    id
+    displayName
+    email
+    photoUrl
+  }
+}

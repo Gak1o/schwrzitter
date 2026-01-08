@@ -1,0 +1,24 @@
+type User @table {
+  displayName: String!
+  createdAt: Timestamp!
+  email: String
+  photoUrl: String
+}
+
+type Context @table {
+  user: User!
+  name: String!
+  createdAt: Timestamp!
+  description: String
+  icon: String
+}
+
+type DeferredItem @table {
+  user: User!
+  context: Context
+  description: String!
+  createdAt: Timestamp!
+  isCompleted: Boolean!
+  reminderDateTime: Timestamp
+  notes: String
+}

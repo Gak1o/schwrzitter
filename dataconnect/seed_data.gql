@@ -1,0 +1,46 @@
+mutation CreateSeedData @transaction @auth(level: PUBLIC, insecureReason: "This operation is used to populate the database with seed data and is safe to expose to the public.") {
+  user_insertMany(data: [
+    {
+      id: "550e8400-e29b-41d4-a716-446655440000",
+      displayName: "demouser1",
+      createdAt: "2024-04-26T12:00:00Z"
+    },
+    {
+      id: "550e8400-e29b-41d4-a716-446655440001",
+      displayName: "demouser2",
+      createdAt: "2024-04-26T12:00:00Z"
+    }
+  ])
+  context_insertMany(data: [
+    {
+      id: "660e8400-e29b-41d4-a716-446655440000",
+      userId: "550e8400-e29b-41d4-a716-446655440000",
+      name: "Demo Context 1",
+      createdAt: "2024-04-26T12:00:00Z"
+    },
+    {
+      id: "660e8400-e29b-41d4-a716-446655440001",
+      userId: "550e8400-e29b-41d4-a716-446655440001",
+      name: "Demo Context 2",
+      createdAt: "2024-04-26T12:00:00Z"
+    }
+  ])
+  deferredItem_insertMany(data: [
+    {
+      id: "770e8400-e29b-41d4-a716-446655440000",
+      userId: "550e8400-e29b-41d4-a716-446655440000",
+      contextId: "660e8400-e29b-41d4-a716-446655440000",
+      description: "Example deferred item 1",
+      isCompleted: false,
+      createdAt: "2024-04-26T12:00:00Z"
+    },
+    {
+      id: "770e8400-e29b-41d4-a716-446655440001",
+      userId: "550e8400-e29b-41d4-a716-446655440001",
+      contextId: "660e8400-e29b-41d4-a716-446655440001",
+      description: "Example deferred item 2",
+      isCompleted: false,
+      createdAt: "2024-04-26T12:00:00Z"
+    }
+  ])
+}
